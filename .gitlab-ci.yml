@@ -1,0 +1,50 @@
+stages:
+  - build
+  - upload
+
+compose_build:
+  stage: build
+  # build and push all images from the docker-compose file
+  # when the faust.cs.fau.de:5000 registry gets https, the image can pulled from there
+  image: "ghcr.io/floriankothmeier/kaniko-compose-builder@sha256:c3ab9a3b3e9e314e2d7c356f739e174bc19e99286419216e0f4dda3338aa559c"
+  script: kaniko-compose-builder --cleanup --force
+  only:
+    - main
+    - dockerci
+  tags:
+    - faust
+    - docker
+
+make:
+  stage: build
+  image: "debian:bookworm"
+  before_script:
+    - apt-get update
+    - apt-get -y install make
+  script: make install
+  artifacts:
+    paths:
+      - metadata.yml
+      - dist_root/
+  only:
+    - main
+  tags:
+    - faust
+    - docker
+
+upload_job:
+  stage: upload
+  script:
+    - ssh ci-upload@www.faust.cs.fau.de mkdir -p "/var/www/files/internal/ci/faustctf/2023/$CI_PROJECT_NAME"
+    - tar -v -czp -H posix -f dist_root.tar.gz -C dist_root .
+    - scp metadata.yml dist_root.tar.gz "ci-upload@www.faust.cs.fau.de:/var/www/files/internal/ci/faustctf/2023/$CI_PROJECT_NAME/"
+  after_script:
+    - find "$CI_PROJECT_DIR" -mindepth 1 -delete
+  variables:
+    GIT_STRATEGY: none
+  only:
+    - main
+    - dockerci
+  tags:
+    - faust
+    - www-upload

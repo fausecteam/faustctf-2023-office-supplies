@@ -1,0 +1,4 @@
+# This dockerfile contains all dependencies of the service
+# Therefore no internet access is needed to rebuild the service
+FROM ubuntu:20.04
+RUN apt-get -y update && apt-get install -y socat binutils

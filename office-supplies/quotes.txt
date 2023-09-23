@@ -1,0 +1,25 @@
+foo
+bar
+baz
+qux
+This service is great with no security issues and there is definitely nobody threatening me with a gun to say this!
+I figured out how to hack this thing, all you have to do is *gunshot sounds*
+I never said that
+'; grep -R . -e FAUST_
+'; DROP TABLE flags; -- 
+*unreadable utf-8 gibberish*
+I hacked the service and all I got was this lousy flag FAUST_TmV2ZXIgZ29ubmEgZ2l2ZSB5b3UgdXAK
+FLAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAGSSSSSSSSSSS
+UwU pwease gimme flag UwU
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+I'm nearly done hacking through the mainframe into the firewall to access the 3D Cryptospace
+Drink more Club Mate!
+Eat more Pizza!
+Hack more stuff!
+How the fuck do you have a quote from me? I literally joined 5 seconds ago
+Honey, I think these quotes might be fake
+Calm down, there is no such thing as security vulnerabilities. It's all in your head
+I love Rust, I love Databases and I love blazingly fast and memory safe applications!
+With Rust you will never have to worry about security vulnerabilities ever again!
+Blazingly fast and memory safe!!
+A HEAPload of security vulnerabilities"

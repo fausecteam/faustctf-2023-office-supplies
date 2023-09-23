@@ -1,0 +1,32 @@
+version: "2.2"
+# ipv6 is not supported in version 3
+
+services:
+  office_supplies_buildenv:
+    scale: 0
+    image: faust.cs.fau.de:5000/office_supplies_buildenv
+    build:
+      context: .
+      dockerfile: Dockerfile.build
+  office_supplies_deps:
+    scale: 0
+    image: faust.cs.fau.de:5000/office_supplies_deps
+    build:
+      context: office-supplies/
+      dockerfile: Dockerfile.deps
+  office_supplies:
+    restart: unless-stopped
+    image: faust.cs.fau.de:5000/office_supplies
+    build: office-supplies/
+    volumes:
+      - ./data:/app/data
+    ports:
+      - "1337:1337"
+
+networks:
+  default:
+    enable_ipv6: true
+    ipam:
+        driver: default
+        config:
+            - subnet: "fd42:d0ce:1337::/64"
